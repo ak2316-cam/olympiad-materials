@@ -580,7 +580,7 @@ We now want to define some notion of \emph{connectivity}.
 For example, in the graph above we want to say somehow that $u$ and $v$ are connected, but $u$ and $v'$ are not. With this in mind, we can introduce some more definitions.
 
 \begin{definition}[Connectivity]
-    In a graph $G = (V, E)$, we say that two vertices $u, v \in V$ are \vocab{connectied} if there is some path between $u$ and $b$ using only edges in $E$.
+    In a graph $G = (V, E)$, we say that two vertices $u, v \in V$ are \vocab{connected} if there is some path between $u$ and $b$ using only edges in $E$.
 \end{definition}
 
 % \begin{definition}[$uv$ Path]
@@ -999,21 +999,16 @@ Two \emph{non-acyclic} graphs are shown below. The subgraphs isomorphic to $C_4$
 	\end{enumerate}
 \end{proposition}
 \begin{proof}
-    We will prove that (a) implies (b), and leave the rest as an exercise.
+	\emph{(a) $\implies$ (b)}. By definition $G$ is acyclic. Let $x, y \in V$ such that $xy \not \in E$. As $G$ is connected, there is an $xy$ path $P$. So $xPy$ then defines a cycle.
 
-    By definition $G = (V, E)$ is acyclic and connected. So let $x, y \in V$ such that $xy \not \in E$. As $G$ is connected, there is some path between $x$ and $y$ in the graph, so then adding the edge $xy$ to this path gives us a cycle.
+	\emph{(b) $\implies$ (a)}. By definition $G$ is acyclic. 
+	So for a contradiction assume $G$ is not connected and let $x, y$ be vertices from different components. Now note $G + xy$ is acyclic, but this contradicts the claim that $G$ is maximally acyclic.
+
+	\emph{(a) $\implies$ (c)}. By definition $G$ is connected. Suppose, for a contradiction, that there exists some vertices $x, y \in E$ with $x \neq y$ and $G - xy$ is connected. But then there is some $xy$ path $P$ that does not use the edge $xy$, so $xPy$ is then a cycle, contradicting that $G$ is acyclic.
+
+	\emph{(c) $\implies$ (a)}. By definition $G$ is connected. Again for a contradiction, assume that $G$ contains a cycle $C$. Then let $xy$ be an edge on $C$. We claim $G - xy$ is still connected. If $u, v \in V(G - xy)$ then let $P$ be a path in $G$ from $u$ to $v$. If $xy$ does not appear as consecutive vertices on this path, then $u$ is connected to $v$. Otherwise, we can consider a new path where we replace $x,y$ with the other vertices in $C - xy$ in order. Thus $u$ and $v$ are still connected. This contradicts the minimal connectedness of $G$. 
+
 \end{proof}
-% \begin{proof}
-% 	\emph{(a) $\implies$ (b)}. By definition $G$ is acyclic. Let $x, y \in V$ such that $xy \not \in E$. As $G$ is connected, there is an $xy$ path $P$. So $xPy$ then defines a cycle.
-
-% 	\emph{(b) $\implies$ (a)}. By definition $G$ is acyclic. 
-% 	So for a contradiction assume $G$ is not connected and let $x, y$ be vertices from different components. Now note $G + xy$ is acyclic, but this contradicts the claim that $G$ is maximally acyclic.
-
-% 	\emph{(a) $\implies$ (c)}. By definition $G$ is connected. Suppose, for a contradiction, that there exists some vertices $x, y \in E$ with $x \neq y$ and $G - xy$ is connected. But then there is some $xy$ path $P$ that does not use the edge $xy$, so $xPy$ is then a cycle, contradicting that $G$ is acyclic.
-
-% 	\emph{(c) $\implies$ (a)}. By definition $G$ is connected. Again for a contradiction, assume that $G$ contains a cycle $C$. Then let $xy$ be an edge on $C$. We claim $G - xy$ is still connected. If $u, v \in V(G - xy)$ then let $P$ be a path in $G$ from $u$ to $v$. If $xy$ does not appear as consecutive vertices on this path, then $u$ is connected to $v$. Otherwise, we can consider a new path where we replace $x,y$ with the other vertices in $C - xy$ in order. Thus $u$ and $v$ are still connected. This contradicts the minimal connectedness of $G$. 
-
-% \end{proof}
 
 \begin{definition}[Leaf]
 	Let $G$ be a graph. A vertex $v \in V(G)$ is a \vocab{leaf} if $d(v) = 1$.
@@ -1063,7 +1058,7 @@ For example, the tree below has three leaves.
 \end{tikzpicture}
 
 \end{center}
-In general, trees have a leaves.
+In general, trees have leaves.
 
 \begin{proposition}[Trees Have Leaves]
 	Every tree $T$ with $|T| \geq 2$ has a leaf.
@@ -1081,10 +1076,9 @@ In general, trees have a leaves.
 	Let $T$ be a tree. Then $e(T) = |T| - 1$.
 \end{proposition}
 \begin{proof}
-    Left as an exercise\footnote{If you want a hint, try use induction.}.
-	% We will do induction on $n = |T|$. If $n = 1$, this is trivial as there is only one edge. Now given $T$ with at least 2 vertices, let $x$ be a leaf in $T$, and define $T' = T - x$.
-	% $T'$ must be acyclic, since we have only removed vertices. $T'$ must also be connected since for all $u, v \in V(T')$ there exists a path from $u$ to $v$ in $T$ that does not use $x$, so it is also a path from $u$ to $v$ in $T'$. Thus $T'$ is a tree.
-	% Thus by induction, $T'$ has $n - 2$ edges, and $e(T) = e(T') + 1 = |T| - 1$. 
+	We will do induction on $n = |T|$. If $n = 1$, this is trivial as there is only one edge. Now given $T$ with at least 2 vertices, let $x$ be a leaf in $T$, and define $T' = T - x$.
+	$T'$ must be acyclic, since we have only removed vertices. $T'$ must also be connected since for all $u, v \in V(T')$ there exists a path from $u$ to $v$ in $T$ that does not use $x$, so it is also a path from $u$ to $v$ in $T'$. Thus $T'$ is a tree.
+	Thus by induction, $T'$ has $n - 2$ edges, and $e(T) = e(T') + 1 = |T| - 1$. 
 \end{proof}
 
 Now lets think about trees as subgraphs of other graphs.
