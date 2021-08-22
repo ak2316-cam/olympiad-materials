@@ -1,0 +1,107 @@
+\documentclass[a4paper]{scrartcl}
+
+\usepackage[
+    fancytheorems, 
+    fancyproofs, 
+    noindent, 
+]{adam}
+
+\usepackage{tikz}
+\usepackage{bbm}
+\usepackage{mathtools}
+
+\newcommand{\score}[1]{{\color{blue}$#1\clubsuit$}}
+\newcommand{\scoremandatory}[1]{{\color{red}$#1\clubsuit$}}
+
+\newtheorem{prob}{Problem}
+
+\newlist{walk}{enumerate}{3}
+\setlist[walk]{label=\bfseries (\alph*)}
+
+\title{Olympiad Graph Theory}
+\subtitle{Foundation Problems}
+\author{Adam Kelly (\texttt{ak2316@cam.ac.uk})}
+\date{\today}
+
+\allowdisplaybreaks
+
+\begin{document}
+
+\maketitle
+
+% \tableofcontents
+
+There are lots of problems here! Since you most likely have limited time, I gave each problem a points value, indicating how much I like it and how useful I think it would be to do.
+They \emph{do not correspond with difficulty} and you should try the problems with the highest points that you like the look of.
+
+\begin{quote}
+	\textbf{\emph{Instructions}}: Try to solve at least {\color{blue}[$10\clubsuit$]} during the break, and make sure you at least try the mandatory problems (which are in {\color{red} red}).
+\end{quote}
+
+\vspace*{2\baselineskip}
+
+\begin{prob}[\scoremandatory{3}, Handshaking Lemma]
+Prove that if $G = (V, E)$ is a graph then
+$$
+\sum_{v \in V} \deg v = 2e(G).
+$$
+\end{prob}
+
+\begin{prob}[\score{1}]
+	Is it possible to build a house with exactly eight rooms, each with three doors, and such that exactly three of the house's doors lead outside?
+\end{prob}
+
+\begin{prob}[\score{1}]
+How many graphs are there with at most $5$ vertices?
+\end{prob}
+	
+
+
+\begin{prob}[\score{3}]
+Let $G$ be a disconnected graph. Prove that it's complement\footnote{The \vocab{complement} of a graph is the graph obtained by including an edge if and only if it was not present in the original graph.} $\overline{G}$ is connected.
+\end{prob}
+
+\begin{prob}[\score{3}]
+Let $G$ be a graph with at least as many edges as vertices. Show it has some cycle.
+\end{prob}
+% \begin{proof}
+% 	Solution: As long as there are vertices with degree exactly 1, delete both the vertex and its incident edge. Also delete all isolated vertices. These operations preserve $E \geq V$, but we can never delete everything because once $V=1, E$ must be 0, so we can never get down to only 1 vertex or less. Therefore we end up with a nonempty graph with all degrees $\geq 2$, and by taking a walk around and eventually hitting itself, we get a cycle.
+% \end{proof}
+
+\begin{prob}[\scoremandatory{4}]
+	Show that at any party, there are always at least two people with exactly the same number of friends at the party.
+\end{prob}
+
+% IMOSL 2001 C3
+\begin{prob}[\score{5}]
+	Define a $k$-clique to be a set of $k$ people such that every pair of them are acquainted with each other. At a certain party, every pair of 3-cliques has at least one person in common, and there are no 5-cliques. Prove that there are two or fewer people at the party whose departure leaves no 3-clique remaining.
+\end{prob}
+
+\begin{prob}[\score{4}]
+	My wife and I were invited to a dinner party attended by four other couples, making a total of 10 people. A certain amount of handshaking took place subject to two conditions: no one shook his or her own hand and no couple shook hands with each other. Afterwards, I became curious and asked everybody else at the party how many people they shook hands with. Given that I received nine different answers, how many hands did I shake?
+\end{prob}
+
+\begin{prob}[\scoremandatory{5}]
+Prove that in a party with 6 people, there must exist three mutual friends or three mutual strangers. Show that this is not true for a party with 5 people
+\end{prob}
+
+\begin{prob}[\score{9}, IrMO 1989 P7]
+Each of the $n$ members of a club is given a different item of information. They are allowed to share the information, but, for security reasons, only in the following way: A pair may communicate by telephone. During a telephone call only one member may speak. The member who speaks may tell the other member all the information s(he) knows. Determine the minimal number of phone calls that are required to convey all the information to each other.
+\end{prob}
+
+\begin{prob}[\score{5}, IrMO 1994 P10]
+If a square is partitioned into $n$ convex polygons, determine the maximum number of edges present in the resulting figure.
+\end{prob}
+
+
+% IMO 2019 P
+\begin{prob}[\score{9}]
+A social network has 2019 users, some pairs of whom are friends. Whenever user $A$ is friends with user $B$, user $B$ is also friends with user $A$. Events of the following kind may happen repeatedly, one at a time:
+\begin{quote}
+	Three users $A, B$, and $C$ such that $A$ is friends with both $B$ and $C$, but $B$ and $C$ are not friends, change their friendship statuses such that $B$ and $C$ are now friends, but $A$ is no longer friends with $B$, and no longer friends with $C$. All other friendship statuses are unchanged.
+\end{quote}
+Initially, 1010 users have 1009 friends each, and 1009 users have 1010 friends each. Prove that there exists a sequence of such events after which each user is friends with at most one other user.
+\end{prob}
+
+
+\end{document}
